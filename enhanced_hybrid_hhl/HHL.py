@@ -38,7 +38,7 @@ from typing import Callable, Union
 # The HHL class implements various algorithms for solving quantum linear systems.
 # The `HHL` class implements the HHL algorithm for solving linear systems of equations using quantum
 # computers, with support for different pre-processing algorithms and inversion circuits.
-class HHL(ABC):
+class HHL:
     r'''This class implements the HHL, Hybrid HHL, or Enhanced Hybrid HHL algorithms. The variant 
     is determined by the choice of pre-processing algorithm and inversion circuit. 
     '''

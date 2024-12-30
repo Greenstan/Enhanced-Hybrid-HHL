@@ -27,7 +27,7 @@ from .quantum_linear_system import (RandomQLSP,
                                     QuantumLinearSystemProblem, 
                                     HHL_Result)
 
-from .eigenvalue_preprocessing import (Lee_preprocessing, 
+from .eigenvalue_preprocessing.ideal_preprocessing import (Lee_preprocessing, 
                                        Yalovetzky_preprocessing, 
                                        ideal_preprocessing,
                                        list_preprocessing,
