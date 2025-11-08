@@ -25,7 +25,7 @@ from enhanced_hybrid_hhl import (ideal_preprocessing,
                                  HHL)
 from qiskit_aer import AerSimulator
 from qiskit_ionq import IonQProvider
-from qiskit_ibm_runtime import Session, QiskitRuntimeService
+# from qiskit_ibm_runtime import Session, QiskitRuntimeService
 
 class TestHHL(unittest.TestCase):
     '''Test HHL'''

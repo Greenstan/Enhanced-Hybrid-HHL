@@ -16,7 +16,7 @@ noise_model=None
 preprocessing = Lee_preprocessing(clock+2, 1, backend=backend, noise_model=None).estimate
 
 e_h_hhl = HHL(get_result_function='get_fidelity_result',
-                        pre_processing=preprocessing,
+                        preprocessing=preprocessing,
                         eigenvalue_inversion=EnhancedHybridInversion,
                         probability_threshold = threshold,
                         exact_alpha=True)

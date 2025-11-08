@@ -22,7 +22,7 @@ from qiskit import transpile, QuantumCircuit, QuantumRegister, ClassicalRegister
 from qiskit.quantum_info import partial_trace, Operator, Statevector
 from qiskit.providers import Backend
 from typing import Callable
-from qiskit_ibm_runtime import Sampler
+# from qiskit_ibm_runtime import Sampler
 import numpy as np
 
 from qiskit_aer import AerSimulator
