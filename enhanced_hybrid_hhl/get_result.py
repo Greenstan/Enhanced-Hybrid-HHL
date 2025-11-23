@@ -198,7 +198,7 @@ def get_fidelity_result(hhl_circuit: QuantumCircuit, problem: QuantumLinearSyste
         hhl_circuit.save_state()
 
     # transpile circuit
-    circ = transpile(hhl_circuit, simulator)
+    circ = transpile(hhl_circuit, simulator, optimization_level=0)
     simulated_result = simulator.run(circ).result()
 
     # show the success probability of inversion

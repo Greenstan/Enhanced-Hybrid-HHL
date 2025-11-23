@@ -1,0 +1,46 @@
+{
+  "timestamp": "2025-11-22T18:42:50.545966",
+  "experiment_type": "HHL_circuit_depth",
+  "parameters": {
+    "matrix_sizes": [
+      2,
+      4,
+      8,
+      16,
+      32
+    ],
+    "num_trials": 5,
+    "preprocessing_type": "yalovetzky",
+    "use_enhanced_inversion": true
+  },
+  "results": {
+    "matrix_sizes": [
+      2,
+      4,
+      8,
+      16,
+      32
+    ],
+    "average_circuit_depths": [
+      377.8,
+      444.2,
+      1055.0,
+      3076.6,
+      11966.2
+    ],
+    "std_circuit_depths": [
+      47.893214550706446,
+      102.4,
+      49.23413450036468,
+      97.11354179515853,
+      3.7094473981982814
+    ],
+    "average_errors": [
+      0.9704067962689006,
+      1.1165462047994534,
+      1.3319647836085504,
+      1.3835896537968917,
+      1.4334279664778347
+    ]
+  }
+}
