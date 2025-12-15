@@ -1,0 +1,30 @@
+{
+  "filename": "braket_results_N2_matrix_hhl5.json",
+  "backend": "SV1",
+  "shots": 1000,
+  "num_problems": 27,
+  "canonical": {
+    "count": 0,
+    "avg_fidelity": 0,
+    "avg_error": 0,
+    "avg_depth": 0,
+    "std_fidelity": 0,
+    "std_error": 0
+  },
+  "hybrid": {
+    "count": 0,
+    "avg_fidelity": 0,
+    "avg_error": 0,
+    "avg_depth": 0,
+    "std_fidelity": 0,
+    "std_error": 0
+  },
+  "enhanced": {
+    "count": 0,
+    "avg_fidelity": 0,
+    "avg_error": 0,
+    "avg_depth": 0,
+    "std_fidelity": 0,
+    "std_error": 0
+  }
+}

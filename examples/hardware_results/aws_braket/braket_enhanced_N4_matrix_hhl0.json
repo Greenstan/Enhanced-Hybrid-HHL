@@ -1,0 +1,68 @@
+{
+  "problem_list": [
+    {
+      "A_matrix": [
+        [
+          2,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          0,
+          6
+        ],
+        [
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          1,
+          6,
+          0,
+          2
+        ]
+      ],
+      "b_vector": [
+        0.29814239699997197,
+        0.29814239699997197,
+        0.14907119849998599,
+        0.8944271909999159
+      ]
+    }
+  ],
+  "shots": 3000,
+  "backend": "sv1",
+  "device_arn": "SV1",
+  "aws_region": "eu-west-2",
+  "problem_source": "custom_4x4_problem.json",
+  "ideal_preprocessing_list": [
+    [
+      [
+        -4.08276253029822,
+        2.0,
+        2.0,
+        8.08276253029822
+      ],
+      [
+        0.3898470844089919,
+        0.24507154069793585,
+        0.14907119849998599,
+        0.8750639796583596
+      ]
+    ]
+  ],
+  "probability_threshold": 0,
+  "k_qubits": 7,
+  "enhanced_ids": [
+    "arn:aws:braket:eu-west-2:380012739362:quantum-task/aefd5c7f-45a4-428b-b616-dede5e667466"
+  ],
+  "enhanced_depths": [
+    1467
+  ],
+  "enhanced_results": []
+}

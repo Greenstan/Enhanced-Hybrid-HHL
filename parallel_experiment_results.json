@@ -1,0 +1,76 @@
+{
+  "experiment_metadata": {
+    "timestamp": "2025-11-23 21:00:13",
+    "total_execution_time": 5.843617916107178,
+    "theoretical_sequential_time": 26.405555963516235,
+    "speedup_factor": 4.518699946266633,
+    "num_puzzle_tasks": 3,
+    "num_cgm_tasks": 4
+  },
+  "puzzle_results": [
+    {
+      "algorithm": "Puzzle Solver",
+      "T": 729,
+      "message": "Fast puzzle 1",
+      "recovered": "Fast puzzle 1",
+      "execution_time": 1.158141851425171,
+      "success": true
+    },
+    {
+      "algorithm": "Puzzle Solver",
+      "T": 2187,
+      "message": "Medium puzzle 2",
+      "recovered": "Medium puzzle 2",
+      "execution_time": 2.414181709289551,
+      "success": true
+    },
+    {
+      "algorithm": "Puzzle Solver",
+      "T": 6561,
+      "message": "Slow puzzle 3",
+      "recovered": "Slow puzzle 3",
+      "execution_time": 4.3587493896484375,
+      "success": true
+    }
+  ],
+  "cgm_results": [
+    {
+      "algorithm": "CGM",
+      "N": 256,
+      "exit_code": 0,
+      "residual": 7.36004637047119e-05,
+      "execution_time": 4.2871081829071045,
+      "success": true
+    },
+    {
+      "algorithm": "CGM",
+      "N": 512,
+      "exit_code": 0,
+      "residual": 0.00010460995931279766,
+      "execution_time": 4.2760608196258545,
+      "success": true
+    },
+    {
+      "algorithm": "CGM",
+      "N": 1024,
+      "exit_code": 0,
+      "residual": 0.00015509477340785145,
+      "execution_time": 4.294718027114868,
+      "success": true
+    },
+    {
+      "algorithm": "CGM",
+      "N": 2048,
+      "exit_code": 0,
+      "residual": 0.0002470905467749143,
+      "execution_time": 5.616595983505249,
+      "success": true
+    }
+  ],
+  "summary": {
+    "puzzle_avg_time": 2.6436909834543862,
+    "cgm_avg_time": 4.618620753288269,
+    "puzzle_total_time": 7.931072950363159,
+    "cgm_total_time": 18.474483013153076
+  }
+}
