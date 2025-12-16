@@ -1,4 +1,28 @@
-# Enhanced-Hybrid-HHL
+# Enhanced Hybrid HHL (Jaffer)
+
+Project used to test Publicly Verifiable Quantum Computation Scheme with a Time Locked Puzzle and a simultaneous Hybrid Harrow-Hassidim-LLoyd (HHL) algo. 
+
+## Relevant newly added Files/directories
+/puzzle-generations - all the code and funcs used to create/solve TLP 
+HHL_example.ipynb - Jupyter notebook sandbox to run Enhanced Hybrid HHL. Important functions:
+        *hermitianize_matrix* - take non-hermitian matrix and hermitianize + pad it
+        *FixedYalovetzkyPreprocessing* - a fixed version of the Hybrid Preprocessing QPE algorithm 
+        *create_projection_operator* - Create a single non-zero element projection operator for HHL measurement
+        *solve_linear_system_with_hhl* - Full Enhanced Hybrid HHL (dynamic size) algo with multiple configurations
+        *visualize_hhl_results* - create mpl graphs of results
+experiment.ipynb - CGM algorithm and puzzle generation and solving tests.
+/examples/hardware_results/aws_braket/braket_enhanced_projection_submission.py - AWS Braket Statevector submission for HHL algo ( creates a JSON file with quantum task ID )
+/examples/hardware_results/aws_braket/braket_enhanced_projection_retrieval.py - Uses submission Quantum task Ids to retrieve solutions and output them (then creates a JSON file with results)
+
+
+
+Todo:
+[ ] Create function for enhanced_projection_submission/retrieval to be called in Jupyter notebook
+[ ] Remove old unused experimentation code in HHL_example.ipynb
+
+
+
+## Enhanced-Hybrid-HHL (Legacy Docs)
 This project contains code and example problems used to the Enhanced Hybrid HHL Algorithm [1]. For benchmarking purposes, the project can implement the standard HHL algorithm [2], the Hybrid HHL algorithm [3], as well as the variation of the Hybrid HHL algorithm proposed by [4]. The variant of the HHL class is determined by the choice of inversion circuit and 
 eigenvalue preprocessing parameter. 
 

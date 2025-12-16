@@ -1,0 +1,122 @@
+{
+  "problem_list": [
+    {
+      "A_matrix": [
+        [
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ]
+      ],
+      "b_vector": [
+        0.26490647141300877,
+        0.5298129428260175,
+        0.13245323570650439,
+        0.7947194142390263
+      ]
+    }
+  ],
+  "shots": 3000,
+  "backend": "sv1",
+  "device_arn": "SV1",
+  "aws_region": "eu-west-2",
+  "problem_source": "custom_4x4_problem.json",
+  "ideal_preprocessing_list": [
+    [
+      [
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      [
+        0.26490647141300877,
+        0.5298129428260175,
+        0.13245323570650439,
+        0.7947194142390263
+      ]
+    ]
+  ],
+  "probability_threshold": 0,
+  "k_qubits": 8,
+  "projection_mode": "all_components",
+  "projection_subset": null,
+  "num_solution_qubits": 2,
+  "num_projections": 4,
+  "projector_basis_states": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "enhanced_projection_results": [
+    {
+      "problem_index": 0,
+      "projection_tasks": [
+        {
+          "basis_state": 0,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/4a1b23fe-5cac-4554-b878-d45fbb852210",
+          "shots": 3000,
+          "projector_index": 0
+        },
+        {
+          "basis_state": 1,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/046b7e23-e473-459f-a87a-8a41bc4cac77",
+          "shots": 3000,
+          "projector_index": 1
+        },
+        {
+          "basis_state": 2,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/27507991-68cb-4d0e-a7a9-3dcf362cd57c",
+          "shots": 3000,
+          "projector_index": 2
+        },
+        {
+          "basis_state": 3,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/4bf46a89-dcd0-4297-bb22-b38996545635",
+          "shots": 3000,
+          "projector_index": 3
+        }
+      ],
+      "depth": 789,
+      "num_projections": 4,
+      "ideal_solution": [
+        {
+          "real": 0.26490647141300877,
+          "imag": 0.0
+        },
+        {
+          "real": 0.5298129428260175,
+          "imag": 0.0
+        },
+        {
+          "real": 0.13245323570650439,
+          "imag": 0.0
+        },
+        {
+          "real": 0.7947194142390263,
+          "imag": 0.0
+        }
+      ]
+    }
+  ]
+}

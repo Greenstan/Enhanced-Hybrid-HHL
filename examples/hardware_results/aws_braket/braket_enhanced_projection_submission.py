@@ -6,6 +6,7 @@ solution components. Supports measuring specific subsets of components
 or all components individually.
 """
 
+import datetime
 import sys
 import os
 import json
@@ -191,7 +192,7 @@ def ensure_all_qubits_measured(circuit):
 def get_braket_projection_result(circuit: QuantumCircuit,
                                   problem: QuantumLinearSystemProblem,
                                   projectors: list,
-                                  shots: int = 6000):
+                                  shots: int = 3000):
     """
     Execute HHL circuit on AWS Braket with multiple projection operators.
     
@@ -420,7 +421,8 @@ data = {
 }
 
 # Save to file
-file_name = f'braket_enhanced_projection_mat_{iteration}.json'
+current_datetime =  datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+file_name = f'braket_enhanced_projection_N4_matrix_hhl_{current_datetime}.json'
 file_path = os.path.join(script_dir, file_name)
 
 with open(file_path, "w") as json_file:

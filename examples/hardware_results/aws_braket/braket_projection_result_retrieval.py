@@ -5,6 +5,7 @@ Retrieves results from projection-based HHL measurements and reconstructs
 the solution vector from the projection measurement outcomes.
 """
 
+import datetime
 import sys
 import os
 import json
@@ -23,7 +24,7 @@ script_dir = os.path.dirname(os.path.realpath(__file__))
 
 # Find the most recent projection results file
 result_files = [f for f in os.listdir(script_dir) 
-                if f.startswith('braket_enhanced_projection_mat') and f.endswith('.json')]
+                if f.startswith('braket_enhanced_projection_N4_matrix_hhl_20251215_194931') and f.endswith('.json')]
 
 if not result_files:
     print("❌ No projection result files found!")
@@ -94,12 +95,12 @@ def extract_solution_probability_from_counts(counts: dict,
         # Solution qubits are the highest numbered qubits
         # For 10-qubit circuit: qubits 8,9 are solution
         # In bitstring: bits 0,1 (leftmost) correspond to qubits 9,8
-        # We need to reverse to get little-endian ordering
-        solution_bits_reversed = bits[:num_solution_qubits]  # Leftmost bits
-        solution_bits = solution_bits_reversed[::-1]  # Reverse to get correct order
+        # Bitstring format: qubit n-1 is at index 0, qubit n-2 at index 1, etc.
+        # So for 2 qubits: leftmost bit = higher qubit = MSB, which is already in correct order
+        solution_bits = bits[:num_solution_qubits]  # Leftmost bits are already in correct order
         
         if debug and success_counts < 3:
-            print(f"    Bitstring: {bits}, flag={flag_bit}, solution_bits_raw={solution_bits_reversed}, solution_bits_corrected={solution_bits}")
+            print(f"    Bitstring: {bits}, flag={flag_bit}, solution_bits={solution_bits}")
         
         if flag_bit == 1:
             success_counts += count
@@ -293,7 +294,8 @@ for prob_idx, prob_result in enumerate(enhanced_projection_results):
 data['enhanced_projection_results'] = updated_results
 
 # Save updated results
-output_file = result_file.replace('.json', '2.json')
+current_datetime =  datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+output_file = result_file.replace('.json', f'_retrieval.json')
 output_path = os.path.join(script_dir, output_file)
 
 with open(output_path, 'w') as file:
