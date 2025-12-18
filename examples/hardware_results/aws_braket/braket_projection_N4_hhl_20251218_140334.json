@@ -1,0 +1,122 @@
+{
+  "problem_list": [
+    {
+      "A_matrix": [
+        [
+          2,
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          4,
+          0,
+          0,
+          2
+        ]
+      ],
+      "b_vector": [
+        0.3713906763541037,
+        0.7427813527082074,
+        0.0,
+        0.5570860145311556
+      ]
+    }
+  ],
+  "shots": 1000,
+  "backend": "sv1",
+  "device_arn": "SV1",
+  "aws_region": "eu-west-2",
+  "ideal_preprocessing_list": [
+    [
+      [
+        -2.0,
+        2.0,
+        2.0,
+        6.0
+      ],
+      [
+        0.13130643285972254,
+        0.0,
+        0.7427813527082074,
+        0.6565321642986128
+      ]
+    ]
+  ],
+  "probability_threshold": 0,
+  "k_qubits": 8,
+  "preprocessing_mode": "ideal",
+  "projection_mode": "all_components",
+  "projection_subset": null,
+  "num_solution_qubits": 2,
+  "num_projections": 4,
+  "projector_basis_states": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "enhanced_projection_results": [
+    {
+      "problem_index": 0,
+      "projection_tasks": [
+        {
+          "basis_state": 0,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/62e40765-17c0-47cc-a24b-101318681079",
+          "shots": 1000,
+          "projector_index": 0
+        },
+        {
+          "basis_state": 1,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/cd3424b0-e9ec-4d50-a472-4c6b6c154414",
+          "shots": 1000,
+          "projector_index": 1
+        },
+        {
+          "basis_state": 2,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/5c111ad9-44e7-445f-9001-c3ac1fcceefe",
+          "shots": 1000,
+          "projector_index": 2
+        },
+        {
+          "basis_state": 3,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/6076e94c-5f76-4bc5-8cda-c85c00146939",
+          "shots": 1000,
+          "projector_index": 3
+        }
+      ],
+      "depth": 1575,
+      "num_projections": 4,
+      "ideal_solution": [
+        {
+          "real": 0.31524416249564025,
+          "imag": 0.0
+        },
+        {
+          "real": 0.9457324874869207,
+          "imag": 0.0
+        },
+        {
+          "real": 0.0,
+          "imag": 0.0
+        },
+        {
+          "real": 0.07881104062391006,
+          "imag": 0.0
+        }
+      ]
+    }
+  ]
+}

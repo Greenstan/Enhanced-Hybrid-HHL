@@ -119,7 +119,7 @@ def run_braket_projection_submission(
         device_arn: Braket device ARN or shorthand like "SV1" (default: "SV1")
         k_qubits: Number of clock qubits (default: 10)
         shots: Number of shots per projection measurement (default: 3000)
-        preprocessing_mode: "ideal" or "yalovetzky" (default: "ideal")
+        preprocessing_mode: "ideal", "yalovetzky", "lee", or "iterative" (default: "ideal")
         projection_mode: "all_components", "subset", or "custom" (default: "all_components")
         projection_subset: List of component indices for subset mode
         probability_threshold: Probability threshold for eigenvalue filtering (default: 0)
@@ -182,15 +182,77 @@ def run_braket_projection_submission(
         
         # Select preprocessing method
         if preprocessing_mode == "yalovetzky":
-            print("  Using Yalovetzky preprocessing (quantum-based)")
-            from . import Yalovetzky_preprocessing
+            print("  Using Yalovetzky preprocessing (QCL-QPE quantum-based)")
+            from .eigenvalue_preprocessing import Yalovetzky_preprocessing
             y_preprocessing = Yalovetzky_preprocessing(
                 clock=k_qubits,
                 backend=backend,
-                max_eigenvalue=20,
+                max_eigenvalue=max_eigenvalue,
                 min_prob=2**(-k_qubits)
             )
             eigenvalue_list, eigenbasis_projection_list = y_preprocessing.estimate(problem)
+            e_preprocessing = list_preprocessing(eigenvalue_list, eigenbasis_projection_list)
+        elif preprocessing_mode == "lee":
+            print("  Using Lee preprocessing (standard QPE quantum-based)")
+            from .eigenvalue_preprocessing import Lee_preprocessing
+            
+            # Create custom get_result function that ensures all qubits are measured
+            def get_braket_lee_result(circ):
+                # Ensure all qubits are measured for Braket
+                circ = ensure_all_qubits_measured(circ)
+                circ.global_phase = 0
+                
+                transp = transpile(circ, backend, optimization_level=optimization_level)
+                transp.global_phase = 0
+                transp = ensure_all_qubits_measured(transp)
+                
+                result = backend.run(transp, shots=shots).result()
+                counts = result.get_counts()
+                tot = sum(counts.values())
+                
+                # Extract only the evaluation qubits
+                # Lee's construct_circuit measures qubits in reversed order, so:
+                # Classical bit 0 has the LSB, classical bit (k_qubits-1) has the MSB
+                # But we need to reverse them back to get the proper phase value
+                result_dict = {}
+                for bitstring, count in counts.items():
+                    # Remove spaces
+                    bits = bitstring.replace(' ', '')
+                    # First k_qubits classical bits contain the phase estimation
+                    eval_bits = bits[:k_qubits]
+                    
+                    # Reverse to get proper bit order (MSB to LSB)
+                    eval_bits_reversed = eval_bits[::-1]
+                    
+                    # Convert to integer with two's complement
+                    eval_int = int(eval_bits_reversed, 2)
+                    if eval_bits_reversed[0] == '1':  # negative in two's complement
+                        eval_int = eval_int - (2**k_qubits)
+                    
+                    if eval_int in result_dict:
+                        result_dict[eval_int] += count / tot
+                    else:
+                        result_dict[eval_int] = count / tot
+                
+                return result_dict
+            
+            lee_preprocessing = Lee_preprocessing(
+                num_eval_qubits=k_qubits,
+                max_eigenvalue=max_eigenvalue,
+                get_result_function=get_braket_lee_result
+            )
+            eigenvalue_list, eigenbasis_projection_list = lee_preprocessing.estimate(problem)
+            e_preprocessing = list_preprocessing(eigenvalue_list, eigenbasis_projection_list)
+        elif preprocessing_mode == "iterative":
+            print("  Using Iterative QPE preprocessing (quantum-based)")
+            from .eigenvalue_preprocessing import Iterative_QPE_Preprocessing
+            iter_preprocessing = Iterative_QPE_Preprocessing(
+                clock=k_qubits,
+                backend=backend,
+                max_eigenvalue=max_eigenvalue,
+                min_prob=2**(-k_qubits)
+            )
+            eigenvalue_list, eigenbasis_projection_list = iter_preprocessing.estimate(problem)
             e_preprocessing = list_preprocessing(eigenvalue_list, eigenbasis_projection_list)
         else:
             print("  Using ideal preprocessing (classical)")
@@ -341,6 +403,8 @@ def run_braket_projection_retrieval(
     Returns:
         Path to the saved retrieval results JSON file
     """
+    import boto3
+    
     print(f"Loading projection results from: {os.path.basename(result_file_path)}")
     
     with open(result_file_path, 'r') as file:
@@ -380,6 +444,8 @@ def run_braket_projection_retrieval(
         
         # Retrieve each projection task
         retrieved_tasks = []
+        all_created_times = []
+        all_ended_times = []
         for task in projection_tasks:
             task_id = task.get('task_id')
             basis_state = task.get('basis_state')
@@ -394,12 +460,51 @@ def run_braket_projection_retrieval(
                 status = job.status()
                 status_str = str(status.name) if hasattr(status, 'name') else str(status)
                 
+                # Get timing metadata using boto3 Braket client
+                created_at = None
+                ended_at = None
+                execution_time_seconds = None
+                
+                try:
+                    # Extract region from backend or use default
+                    region = backend._aws_session.region_name if hasattr(backend, '_aws_session') else aws_region
+                    braket_client = boto3.client('braket', region_name=region)
+                    
+                    # Get job details from AWS Braket
+                    response = braket_client.get_quantum_task(quantumTaskArn=task_id)
+                    created_at_raw = response.get('createdAt')
+                    ended_at_raw = response.get('endedAt')
+                    
+                    # Convert to string for JSON serialization
+                    created_at = str(created_at_raw) if created_at_raw else None
+                    ended_at = str(ended_at_raw) if ended_at_raw else None
+                    
+                    # Calculate execution time if both timestamps are available
+                    if created_at_raw and ended_at_raw:
+                        # Parse ISO format timestamps
+                        from dateutil import parser
+                        created_dt = parser.isoparse(str(created_at_raw))
+                        ended_dt = parser.isoparse(str(ended_at_raw))
+                        execution_time_seconds = (ended_dt - created_dt).total_seconds()
+                except Exception:
+                    # If timing retrieval fails, just skip it
+                    pass
+                
                 task_result = {
                     'basis_state': basis_state,
                     'task_id': task_id,
                     'status': status_str,
-                    'shots': task['shots']
+                    'shots': task['shots'],
+                    'created_at': created_at,
+                    'ended_at': ended_at,
+                    'execution_time_seconds': execution_time_seconds
                 }
+                
+                # Track timing for problem-level statistics
+                if created_at:
+                    all_created_times.append(created_at)
+                if ended_at:
+                    all_ended_times.append(ended_at)
                 
                 if status_str in ['COMPLETED', 'DONE', 'JobStatus.COMPLETED']:
                     result = job.result()
@@ -414,7 +519,8 @@ def run_braket_projection_retrieval(
                     task_result['component_probability'] = float(prob)
                     task_result['success_rate'] = float(success_rate)
                     
-                    print(f"    Basis |{basis_state}⟩: P={prob:.4f}, Success={success_rate:.4f}")
+                    time_str = f", Time={execution_time_seconds:.1f}s" if execution_time_seconds else ""
+                    print(f"    Basis |{basis_state}⟩: P={prob:.4f}, Success={success_rate:.4f}{time_str}")
                 else:
                     print(f"    Basis |{basis_state}⟩: Status={status_str}")
                 
@@ -431,21 +537,52 @@ def run_braket_projection_retrieval(
         # Calculate fidelity
         fidelity = calculate_fidelity(solution_probs, ideal_solution)
         
+        # Calculate total problem time
+        total_problem_time = None
+        first_created_at = None
+        last_ended_at = None
+        if all_created_times and all_ended_times:
+            try:
+                from dateutil import parser
+                # Parse all timestamps
+                created_datetimes = [parser.isoparse(str(t)) for t in all_created_times]
+                ended_datetimes = [parser.isoparse(str(t)) for t in all_ended_times]
+                
+                # Find first creation and last completion
+                first_created = min(created_datetimes)
+                last_ended = max(ended_datetimes)
+                
+                # Calculate total time
+                total_problem_time = (last_ended - first_created).total_seconds()
+                first_created_at = str(all_created_times[created_datetimes.index(first_created)])
+                last_ended_at = str(all_ended_times[ended_datetimes.index(last_ended)])
+            except Exception:
+                pass
+        
         print(f"\n  Reconstructed: {solution_probs}")
         print(f"  Ideal probs: {np.abs(ideal_solution)**2 / np.sum(np.abs(ideal_solution)**2)}")
         print(f"  Fidelity: {fidelity:.4f}")
-        print(f"  Avg success rate: {metadata['average_success_rate']:.4f}\n")
+        print(f"  Avg success rate: {metadata['average_success_rate']:.4f}")
+        if total_problem_time:
+            print(f"  Total problem time: {total_problem_time:.1f}s (first created → last ended)")
+        print()
         
         # Update result
-        updated_results.append({
+        result_data = {
             **prob_result,
             'projection_tasks': retrieved_tasks,
             'reconstructed_solution_probabilities': solution_probs.tolist(),
             'fidelity': float(fidelity),
             'metadata': metadata
-        })
-    
-    # Update data
+        }
+        
+        # Add problem-level timing if available
+        if total_problem_time is not None:
+            result_data['total_problem_time_seconds'] = total_problem_time
+            result_data['first_created_at'] = first_created_at
+            result_data['last_ended_at'] = last_ended_at
+        
+        updated_results.append(result_data)
     data['enhanced_projection_results'] = updated_results
     
     # Save updated results
@@ -470,6 +607,29 @@ def run_braket_projection_retrieval(
         print(f"  Avg success rate: {result['metadata']['average_success_rate']:.4f}")
         print(f"  Components: {result['metadata']['measured_components']}")
         print(f"  Solution: {result['reconstructed_solution_probabilities']}")
+        
+        # Show problem-level timing
+        if 'total_problem_time_seconds' in result:
+            print(f"  Total problem time: {result['total_problem_time_seconds']:.1f}s")
+            print(f"    First created: {result['first_created_at']}")
+            print(f"    Last ended: {result['last_ended_at']}")
+        
+        # Calculate timing statistics for this problem
+        execution_times = []
+        for task in result['projection_tasks']:
+            exec_time = task.get('execution_time_seconds')
+            if exec_time is not None:
+                execution_times.append(exec_time)
+        
+        if execution_times:
+            total_time = sum(execution_times)
+            avg_time = np.mean(execution_times)
+            min_time = min(execution_times)
+            max_time = max(execution_times)
+            print(f"  Task-level timing:")
+            print(f"    Total execution time: {total_time:.1f}s")
+            print(f"    Average per task: {avg_time:.1f}s")
+            print(f"    Min/Max: {min_time:.1f}s / {max_time:.1f}s")
     
     print("\n" + "="*60)
     

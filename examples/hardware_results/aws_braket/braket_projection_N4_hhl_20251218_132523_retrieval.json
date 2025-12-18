@@ -1,0 +1,255 @@
+{
+  "problem_list": [
+    {
+      "A_matrix": [
+        [
+          2,
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          4,
+          0,
+          0,
+          2
+        ]
+      ],
+      "b_vector": [
+        0.3713906763541037,
+        0.7427813527082074,
+        0.0,
+        0.5570860145311556
+      ]
+    },
+    {
+      "A_matrix": [
+        [
+          3,
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          3,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          3,
+          1
+        ],
+        [
+          0,
+          0,
+          1,
+          3
+        ]
+      ],
+      "b_vector": [
+        0.7071067811865475,
+        0.0,
+        0.7071067811865475,
+        0.0
+      ]
+    }
+  ],
+  "shots": 3000,
+  "backend": "sv1",
+  "device_arn": "SV1",
+  "aws_region": "eu-west-2",
+  "ideal_preprocessing_list": [
+    [
+      [
+        -2.0,
+        2.0,
+        2.0,
+        6.0
+      ],
+      [
+        0.13130643285972254,
+        0.0,
+        0.7427813527082074,
+        0.6565321642986128
+      ]
+    ],
+    [
+      [
+        2.0,
+        2.0,
+        4.0,
+        4.0
+      ],
+      [
+        0.5000000000000001,
+        0.5000000000000001,
+        0.5000000000000001,
+        0.5000000000000001
+      ]
+    ]
+  ],
+  "probability_threshold": 0,
+  "k_qubits": 10,
+  "preprocessing_mode": "ideal",
+  "projection_mode": "all_components",
+  "projection_subset": null,
+  "num_solution_qubits": 2,
+  "num_projections": 4,
+  "projector_basis_states": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "enhanced_projection_results": [
+    {
+      "problem_index": 0,
+      "projection_tasks": [
+        {
+          "basis_state": 0,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/2c5af08c-186a-4cea-9121-79879e23e0a0",
+          "shots": 3000,
+          "projector_index": 0,
+          "error": "'dict' object is not callable"
+        },
+        {
+          "basis_state": 1,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/ab3b565b-521b-41cd-9bd9-a45ff0812fe7",
+          "shots": 3000,
+          "projector_index": 1,
+          "error": "'dict' object is not callable"
+        },
+        {
+          "basis_state": 2,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/23472590-c827-4a58-a8ca-0e23dbafab88",
+          "shots": 3000,
+          "projector_index": 2,
+          "error": "'dict' object is not callable"
+        },
+        {
+          "basis_state": 3,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/0c1a8ac6-a238-4b02-86c7-cb3cd1056ba0",
+          "shots": 3000,
+          "projector_index": 3,
+          "error": "'dict' object is not callable"
+        }
+      ],
+      "depth": 2157,
+      "num_projections": 4,
+      "ideal_solution": [
+        {
+          "real": 0.31524416249564025,
+          "imag": 0.0
+        },
+        {
+          "real": 0.9457324874869207,
+          "imag": 0.0
+        },
+        {
+          "real": 0.0,
+          "imag": 0.0
+        },
+        {
+          "real": 0.07881104062391006,
+          "imag": 0.0
+        }
+      ],
+      "reconstructed_solution_probabilities": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "fidelity": 0.0,
+      "metadata": {
+        "measured_components": [],
+        "success_rates": [],
+        "raw_probabilities": [],
+        "average_success_rate": 0.0,
+        "total_probability": 0.0
+      }
+    },
+    {
+      "problem_index": 1,
+      "projection_tasks": [
+        {
+          "basis_state": 0,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/c933381c-adb1-49a4-bb9d-170557710020",
+          "shots": 3000,
+          "projector_index": 0,
+          "error": "'dict' object is not callable"
+        },
+        {
+          "basis_state": 1,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/e1b71958-1834-4948-a9cf-16192dd6e214",
+          "shots": 3000,
+          "projector_index": 1,
+          "error": "'dict' object is not callable"
+        },
+        {
+          "basis_state": 2,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/24c545ea-7762-402c-a558-1ab4fb34b75f",
+          "shots": 3000,
+          "projector_index": 2,
+          "error": "'dict' object is not callable"
+        },
+        {
+          "basis_state": 3,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/45f1fee2-3a2d-4ea1-8b50-6170ff1cfcb5",
+          "shots": 3000,
+          "projector_index": 3,
+          "error": "'dict' object is not callable"
+        }
+      ],
+      "depth": 1602,
+      "num_projections": 4,
+      "ideal_solution": [
+        {
+          "real": 0.6708203932499369,
+          "imag": 0.0
+        },
+        {
+          "real": -0.22360679774997896,
+          "imag": 0.0
+        },
+        {
+          "real": 0.6708203932499369,
+          "imag": 0.0
+        },
+        {
+          "real": -0.22360679774997896,
+          "imag": 0.0
+        }
+      ],
+      "reconstructed_solution_probabilities": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "fidelity": 0.0,
+      "metadata": {
+        "measured_components": [],
+        "success_rates": [],
+        "raw_probabilities": [],
+        "average_success_rate": 0.0,
+        "total_probability": 0.0
+      }
+    }
+  ]
+}

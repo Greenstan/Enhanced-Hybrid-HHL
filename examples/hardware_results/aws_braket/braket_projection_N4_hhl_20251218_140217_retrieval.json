@@ -1,0 +1,201 @@
+{
+  "problem_list": [
+    {
+      "A_matrix": [
+        [
+          2,
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          4,
+          0,
+          0,
+          2
+        ]
+      ],
+      "b_vector": [
+        0.3713906763541037,
+        0.7427813527082074,
+        0.0,
+        0.5570860145311556
+      ]
+    }
+  ],
+  "shots": 1000,
+  "backend": "sv1",
+  "device_arn": "SV1",
+  "aws_region": "eu-west-2",
+  "ideal_preprocessing_list": [
+    [
+      [
+        -2.0,
+        2.0,
+        2.0,
+        6.0
+      ],
+      [
+        0.13130643285972254,
+        0.0,
+        0.7427813527082074,
+        0.6565321642986128
+      ]
+    ]
+  ],
+  "probability_threshold": 0,
+  "k_qubits": 8,
+  "preprocessing_mode": "lee",
+  "projection_mode": "all_components",
+  "projection_subset": null,
+  "num_solution_qubits": 2,
+  "num_projections": 4,
+  "projector_basis_states": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "enhanced_projection_results": [
+    {
+      "problem_index": 0,
+      "projection_tasks": [
+        {
+          "basis_state": 0,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/d716d764-39ff-45f0-87de-9d40aed0fcea",
+          "status": "DONE",
+          "shots": 1000,
+          "created_at": "2025-12-18 11:02:11.316000+00:00",
+          "ended_at": "2025-12-18 11:02:14.574000+00:00",
+          "execution_time_seconds": 3.258,
+          "counts": {
+            "00000000000": 141,
+            "01000000000": 554,
+            "11000000000": 304,
+            "01111000001": 1
+          },
+          "component_probability": 0.0,
+          "success_rate": 0.001
+        },
+        {
+          "basis_state": 1,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/febd1dbf-ae73-43ac-99ae-571d1d493c3c",
+          "status": "DONE",
+          "shots": 1000,
+          "created_at": "2025-12-18 11:02:13.614000+00:00",
+          "ended_at": "2025-12-18 11:02:18.076000+00:00",
+          "execution_time_seconds": 4.462,
+          "counts": {
+            "01000000000": 548,
+            "00000000000": 157,
+            "11000000000": 292,
+            "00110000001": 1,
+            "01110010001": 1,
+            "01110100001": 1
+          },
+          "component_probability": 0.6666666666666666,
+          "success_rate": 0.003
+        },
+        {
+          "basis_state": 2,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/7b2e3dba-6f2f-4e7f-a9d7-9e83bea57691",
+          "status": "DONE",
+          "shots": 1000,
+          "created_at": "2025-12-18 11:02:15.735000+00:00",
+          "ended_at": "2025-12-18 11:02:20.112000+00:00",
+          "execution_time_seconds": 4.377,
+          "counts": {
+            "11000000000": 316,
+            "00000000000": 132,
+            "01000000000": 552
+          },
+          "component_probability": 0.0,
+          "success_rate": 0.0
+        },
+        {
+          "basis_state": 3,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/af57cd74-7b3e-460f-a1ec-4d8ffbb4520a",
+          "status": "DONE",
+          "shots": 1000,
+          "created_at": "2025-12-18 11:02:18.041000+00:00",
+          "ended_at": "2025-12-18 11:02:21.693000+00:00",
+          "execution_time_seconds": 3.652,
+          "counts": {
+            "11000000000": 310,
+            "01000000000": 548,
+            "00000000000": 138,
+            "01111100001": 1,
+            "00100000001": 1,
+            "01110010001": 2
+          },
+          "component_probability": 0.0,
+          "success_rate": 0.004
+        }
+      ],
+      "depth": 6280,
+      "num_projections": 4,
+      "ideal_solution": [
+        {
+          "real": 0.31524416249564025,
+          "imag": 0.0
+        },
+        {
+          "real": 0.9457324874869207,
+          "imag": 0.0
+        },
+        {
+          "real": 0.0,
+          "imag": 0.0
+        },
+        {
+          "real": 0.07881104062391006,
+          "imag": 0.0
+        }
+      ],
+      "reconstructed_solution_probabilities": [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "fidelity": 0.8944099378881987,
+      "metadata": {
+        "measured_components": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "success_rates": [
+          0.001,
+          0.003,
+          0.0,
+          0.004
+        ],
+        "raw_probabilities": [
+          0.0,
+          0.6666666666666666,
+          0.0,
+          0.0
+        ],
+        "average_success_rate": 0.002,
+        "total_probability": 0.6666666666666666
+      },
+      "total_problem_time_seconds": 10.377,
+      "first_created_at": "2025-12-18 11:02:11.316000+00:00",
+      "last_ended_at": "2025-12-18 11:02:21.693000+00:00"
+    }
+  ]
+}
