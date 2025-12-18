@@ -24,7 +24,7 @@ script_dir = os.path.dirname(os.path.realpath(__file__))
 
 # Find the most recent projection results file
 result_files = [f for f in os.listdir(script_dir) 
-                if f.startswith('braket_enhanced_projection_N4_matrix_hhl_20251215_194931') and f.endswith('.json')]
+                if f.startswith('braket_enhanced_projection_N4_matrix_hhl_20251217_152356') and f.endswith('.json')]
 
 if not result_files:
     print("❌ No projection result files found!")

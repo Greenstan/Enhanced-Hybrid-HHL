@@ -2,6 +2,8 @@
 
 Project used to test Publicly Verifiable Quantum Computation Scheme with a Time Locked Puzzle and a simultaneous Hybrid Harrow-Hassidim-LLoyd (HHL) algo. 
 
+For the TLP: T = 440 -> 1s of Execution (Linearly scales with T)
+
 ## Relevant newly added Files/directories
 /puzzle-generations - all the code and funcs used to create/solve TLP 
 HHL_example.ipynb - Jupyter notebook sandbox to run Enhanced Hybrid HHL. Important functions:

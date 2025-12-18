@@ -33,6 +33,9 @@ from .eigenvalue_preprocessing import (Lee_preprocessing,
                                        list_preprocessing,
                                        Iterative_QPE_Preprocessing)
 
+from .braket_projection import (run_braket_projection_submission,
+                                run_braket_projection_retrieval)
+
 __all__ = [
     "HHL",
     "EnhancedHybridInversion",
@@ -49,5 +52,7 @@ __all__ = [
     "Lee_preprocessing",
     "ideal_preprocessing",
     "list_preprocessing",
-    "Iterative_QPE_Preprocessing"
+    "Iterative_QPE_Preprocessing",
+    "run_braket_projection_submission",
+    "run_braket_projection_retrieval"
 ]

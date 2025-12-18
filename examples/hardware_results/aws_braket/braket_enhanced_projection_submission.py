@@ -52,7 +52,7 @@ script_dir = os.path.dirname(os.path.realpath(__file__))
 
 # Load problem file - look for N4 problem files
 problem_files = [
-    "custom_4x4_problem.json",
+    "custom_4x4_problem2.json",
 ]
 
 problem_file = None
@@ -106,7 +106,7 @@ print(f"✓ Loaded {len(problem_list)} problems")
 print(f"  Problem size: {len(problem_list[0].A_matrix)}×{len(problem_list[0].A_matrix)}")
 
 # Configuration
-k_qubits = 8
+k_qubits = 10
 probability_threshold = 0
 
 # Initialize result storage
@@ -350,8 +350,7 @@ for i, problem in enumerate(problem_list):
         y_preprocessing = Yalovetzky_preprocessing(
             clock=k_qubits,
             backend=backend,
-            alpha=50,
-            max_eigenvalue=10,
+            max_eigenvalue=20,
             min_prob=2**(-k_qubits)
         )
         # Run preprocessing to get eigenvalues (this submits quantum circuits)
