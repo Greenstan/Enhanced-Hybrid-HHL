@@ -1,0 +1,155 @@
+{
+  "problem_list": [
+    {
+      "A_matrix": [
+        [
+          4,
+          1
+        ],
+        [
+          1,
+          4
+        ]
+      ],
+      "b_vector": [
+        0.4472135954999579,
+        0.8944271909999159
+      ]
+    }
+  ],
+  "shots": 6000,
+  "backend": "sv1",
+  "device_arn": "SV1",
+  "aws_region": "eu-west-2",
+  "ideal_preprocessing_list": [
+    [
+      [
+        3.0,
+        5.0
+      ],
+      [
+        0.316227766016838,
+        0.948683298050514
+      ]
+    ]
+  ],
+  "probability_threshold": 0,
+  "k_qubits": 8,
+  "preprocessing_mode": "lee",
+  "projection_mode": "all_components",
+  "projection_subset": null,
+  "num_solution_qubits": 1,
+  "num_projections": 2,
+  "projector_basis_states": [
+    0,
+    1
+  ],
+  "enhanced_projection_results": [
+    {
+      "problem_index": 0,
+      "projection_tasks": [
+        {
+          "basis_state": 0,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/bf73977e-0c91-4450-8cf1-6698e2c4fac2",
+          "status": "DONE",
+          "shots": 6000,
+          "created_at": "2025-12-18 13:38:57.378000+00:00",
+          "ended_at": "2025-12-18 13:39:00.839000+00:00",
+          "execution_time_seconds": 3.461,
+          "counts": {
+            "1000000000": 4776,
+            "0000000000": 1201,
+            "1101011000": 1,
+            "0101111001": 1,
+            "0011010001": 3,
+            "0111110001": 1,
+            "1101110001": 2,
+            "1101000001": 1,
+            "0101010000": 1,
+            "0101110001": 1,
+            "1011011000": 1,
+            "1011111001": 1,
+            "1101111000": 1,
+            "1101010001": 1,
+            "1101010000": 1,
+            "1011100001": 1,
+            "1011011001": 1,
+            "0011010000": 2,
+            "0101110000": 1,
+            "1011111101": 1,
+            "1011110000": 1
+          },
+          "component_probability": 0.42857142857142855,
+          "success_rate": 0.0023333333333333335
+        },
+        {
+          "basis_state": 1,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/2f1e444a-2a82-44c8-b3c9-9c78f0451f41",
+          "status": "DONE",
+          "shots": 6000,
+          "created_at": "2025-12-18 13:38:59.049000+00:00",
+          "ended_at": "2025-12-18 13:39:02.188000+00:00",
+          "execution_time_seconds": 3.139,
+          "counts": {
+            "1000000000": 4803,
+            "0101010001": 4,
+            "0000000000": 1176,
+            "0000110000": 1,
+            "1011011000": 1,
+            "0110000111": 1,
+            "0100100111": 1,
+            "1010100111": 1,
+            "0011011000": 1,
+            "1111000100": 1,
+            "0011011001": 1,
+            "0101110000": 2,
+            "0010110110": 1,
+            "1101110000": 2,
+            "1101010001": 1,
+            "1011011001": 1,
+            "0101100000": 1,
+            "0011110001": 1
+          },
+          "component_probability": 0.2727272727272727,
+          "success_rate": 0.0018333333333333333
+        }
+      ],
+      "depth": 4275,
+      "num_projections": 2,
+      "ideal_solution": [
+        {
+          "real": 0.27472112789737807,
+          "imag": 0.0
+        },
+        {
+          "real": 0.9615239476408233,
+          "imag": 0.0
+        }
+      ],
+      "reconstructed_solution_probabilities": [
+        0.611111111111111,
+        0.38888888888888884
+      ],
+      "fidelity": 0.6632065019360368,
+      "metadata": {
+        "measured_components": [
+          0,
+          1
+        ],
+        "success_rates": [
+          0.0023333333333333335,
+          0.0018333333333333333
+        ],
+        "raw_probabilities": [
+          0.42857142857142855,
+          0.2727272727272727
+        ],
+        "average_success_rate": 0.0020833333333333333,
+        "total_probability": 0.7012987012987013
+      },
+      "total_problem_time_seconds": 4.81,
+      "first_created_at": "2025-12-18 13:38:57.378000+00:00",
+      "last_ended_at": "2025-12-18 13:39:02.188000+00:00"
+    }
+  ]
+}

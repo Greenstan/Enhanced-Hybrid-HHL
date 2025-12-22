@@ -1,0 +1,283 @@
+{
+  "experiment_type": "tlp_solving",
+  "parameters": {
+    "T_values": [
+      256,
+      1024,
+      4096,
+      16384
+    ],
+    "num_trials": 5,
+    "message_length": 25,
+    "message": "This is a secret message!"
+  },
+  "results": [
+    {
+      "T": 256,
+      "trial": 0,
+      "generation_time": 0.059252023696899414,
+      "solving_time": 0.057453155517578125,
+      "total_time": 0.11670517921447754,
+      "success": true,
+      "message_length": 25,
+      "recovered_message": "This is a secret message!",
+      "timestamp": "2025-12-22T14:18:21.624777"
+    },
+    {
+      "T": 256,
+      "trial": 1,
+      "generation_time": 0.05821490287780762,
+      "solving_time": 0.05834174156188965,
+      "total_time": 0.11655664443969727,
+      "success": true,
+      "message_length": 25,
+      "recovered_message": "This is a secret message!",
+      "timestamp": "2025-12-22T14:18:21.741375"
+    },
+    {
+      "T": 256,
+      "trial": 2,
+      "generation_time": 0.05814194679260254,
+      "solving_time": 0.05866694450378418,
+      "total_time": 0.11680889129638672,
+      "success": true,
+      "message_length": 25,
+      "recovered_message": "This is a secret message!",
+      "timestamp": "2025-12-22T14:18:21.858224"
+    },
+    {
+      "T": 256,
+      "trial": 3,
+      "generation_time": 0.0581817626953125,
+      "solving_time": 0.05741596221923828,
+      "total_time": 0.11559772491455078,
+      "success": true,
+      "message_length": 25,
+      "recovered_message": "This is a secret message!",
+      "timestamp": "2025-12-22T14:18:21.973866"
+    },
+    {
+      "T": 256,
+      "trial": 4,
+      "generation_time": 0.05731916427612305,
+      "solving_time": 0.05726313591003418,
+      "total_time": 0.11458230018615723,
+      "success": true,
+      "message_length": 25,
+      "recovered_message": "This is a secret message!",
+      "timestamp": "2025-12-22T14:18:22.088483"
+    },
+    {
+      "T": 1024,
+      "trial": 0,
+      "generation_time": 0.23073506355285645,
+      "solving_time": 0.22734689712524414,
+      "total_time": 0.4580819606781006,
+      "success": true,
+      "message_length": 25,
+      "recovered_message": "This is a secret message!",
+      "timestamp": "2025-12-22T14:18:22.546610"
+    },
+    {
+      "T": 1024,
+      "trial": 1,
+      "generation_time": 0.22819089889526367,
+      "solving_time": 0.2299489974975586,
+      "total_time": 0.45813989639282227,
+      "success": true,
+      "message_length": 25,
+      "recovered_message": "This is a secret message!",
+      "timestamp": "2025-12-22T14:18:23.004780"
+    },
+    {
+      "T": 1024,
+      "trial": 2,
+      "generation_time": 0.2264859676361084,
+      "solving_time": 0.22739815711975098,
+      "total_time": 0.4538841247558594,
+      "success": true,
+      "message_length": 25,
+      "recovered_message": "This is a secret message!",
+      "timestamp": "2025-12-22T14:18:23.458696"
+    },
+    {
+      "T": 1024,
+      "trial": 3,
+      "generation_time": 0.22674012184143066,
+      "solving_time": 0.22889971733093262,
+      "total_time": 0.4556398391723633,
+      "success": true,
+      "message_length": 25,
+      "recovered_message": "This is a secret message!",
+      "timestamp": "2025-12-22T14:18:23.914381"
+    },
+    {
+      "T": 1024,
+      "trial": 4,
+      "generation_time": 0.23127079010009766,
+      "solving_time": 0.25022387504577637,
+      "total_time": 0.481494665145874,
+      "success": true,
+      "message_length": 25,
+      "recovered_message": "This is a secret message!",
+      "timestamp": "2025-12-22T14:18:24.395913"
+    },
+    {
+      "T": 4096,
+      "trial": 0,
+      "generation_time": 0.9120659828186035,
+      "solving_time": 0.9037418365478516,
+      "total_time": 1.815807819366455,
+      "success": true,
+      "message_length": 25,
+      "recovered_message": "This is a secret message!",
+      "timestamp": "2025-12-22T14:18:26.211759"
+    },
+    {
+      "T": 4096,
+      "trial": 1,
+      "generation_time": 0.9006338119506836,
+      "solving_time": 0.9047753810882568,
+      "total_time": 1.8054091930389404,
+      "success": true,
+      "message_length": 25,
+      "recovered_message": "This is a secret message!",
+      "timestamp": "2025-12-22T14:18:28.017203"
+    },
+    {
+      "T": 4096,
+      "trial": 2,
+      "generation_time": 0.9019699096679688,
+      "solving_time": 0.9026980400085449,
+      "total_time": 1.8046679496765137,
+      "success": true,
+      "message_length": 25,
+      "recovered_message": "This is a secret message!",
+      "timestamp": "2025-12-22T14:18:29.821900"
+    },
+    {
+      "T": 4096,
+      "trial": 3,
+      "generation_time": 0.9164891242980957,
+      "solving_time": 0.8997030258178711,
+      "total_time": 1.8161921501159668,
+      "success": true,
+      "message_length": 25,
+      "recovered_message": "This is a secret message!",
+      "timestamp": "2025-12-22T14:18:31.638128"
+    },
+    {
+      "T": 4096,
+      "trial": 4,
+      "generation_time": 0.8999888896942139,
+      "solving_time": 0.9025611877441406,
+      "total_time": 1.8025500774383545,
+      "success": true,
+      "message_length": 25,
+      "recovered_message": "This is a secret message!",
+      "timestamp": "2025-12-22T14:18:33.440707"
+    },
+    {
+      "T": 16384,
+      "trial": 0,
+      "generation_time": 3.617851972579956,
+      "solving_time": 3.6330721378326416,
+      "total_time": 7.250924110412598,
+      "success": true,
+      "message_length": 25,
+      "recovered_message": "This is a secret message!",
+      "timestamp": "2025-12-22T14:18:40.691663"
+    },
+    {
+      "T": 16384,
+      "trial": 1,
+      "generation_time": 3.6087682247161865,
+      "solving_time": 3.5990939140319824,
+      "total_time": 7.207862138748169,
+      "success": true,
+      "message_length": 25,
+      "recovered_message": "This is a secret message!",
+      "timestamp": "2025-12-22T14:18:47.899554"
+    },
+    {
+      "T": 16384,
+      "trial": 2,
+      "generation_time": 3.5961239337921143,
+      "solving_time": 3.6058449745178223,
+      "total_time": 7.2019689083099365,
+      "success": true,
+      "message_length": 25,
+      "recovered_message": "This is a secret message!",
+      "timestamp": "2025-12-22T14:18:55.101558"
+    },
+    {
+      "T": 16384,
+      "trial": 3,
+      "generation_time": 3.607117176055908,
+      "solving_time": 3.6903328895568848,
+      "total_time": 7.297450065612793,
+      "success": true,
+      "message_length": 25,
+      "recovered_message": "This is a secret message!",
+      "timestamp": "2025-12-22T14:19:02.399044"
+    },
+    {
+      "T": 16384,
+      "trial": 4,
+      "generation_time": 3.633815050125122,
+      "solving_time": 3.6084539890289307,
+      "total_time": 7.242269039154053,
+      "success": true,
+      "message_length": 25,
+      "recovered_message": "This is a secret message!",
+      "timestamp": "2025-12-22T14:19:09.641355"
+    }
+  ],
+  "statistics": {
+    "256": {
+      "avg_generation_time": 0.058221960067749025,
+      "std_generation_time": 0.000613863026799364,
+      "avg_solving_time": 0.05782818794250488,
+      "std_solving_time": 0.0005651748499607273,
+      "avg_total_time": 0.1160501480102539,
+      "std_total_time": 0.0008509476808862117,
+      "min_solving_time": 0.05726313591003418,
+      "max_solving_time": 0.05866694450378418,
+      "successful_trials": 5
+    },
+    "1024": {
+      "avg_generation_time": 0.22868456840515136,
+      "std_generation_time": 0.001987536181908006,
+      "avg_solving_time": 0.23276352882385254,
+      "std_solving_time": 0.00878454812167937,
+      "avg_total_time": 0.46144809722900393,
+      "std_total_time": 0.010149773342538694,
+      "min_solving_time": 0.22734689712524414,
+      "max_solving_time": 0.25022387504577637,
+      "successful_trials": 5
+    },
+    "4096": {
+      "avg_generation_time": 0.9062295436859131,
+      "std_generation_time": 0.0067487106020493745,
+      "avg_solving_time": 0.902695894241333,
+      "std_solving_time": 0.0016966833941518217,
+      "avg_total_time": 1.8089254379272461,
+      "std_total_time": 0.005853335561736587,
+      "min_solving_time": 0.8997030258178711,
+      "max_solving_time": 0.9047753810882568,
+      "successful_trials": 5
+    },
+    "16384": {
+      "avg_generation_time": 3.6127352714538574,
+      "std_generation_time": 0.012599799156138111,
+      "avg_solving_time": 3.6273595809936525,
+      "std_solving_time": 0.03351870679239634,
+      "avg_total_time": 7.24009485244751,
+      "std_total_time": 0.03436322406861566,
+      "min_solving_time": 3.5990939140319824,
+      "max_solving_time": 3.6903328895568848,
+      "successful_trials": 5
+    }
+  },
+  "timestamp": "2025-12-22T14:19:09.641824"
+}
