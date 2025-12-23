@@ -20,7 +20,7 @@ from enhanced_hybrid_hhl import (
 def run_braket_circuit_depth_experiment(
     matrix_sizes=[2, 4, 8, 16],
     num_trials=20,
-    k_qubits=7,
+    k_qubits=[7],
     shots=3000,
     preprocessing_mode="ideal",
     output_dir="./experiments/aws_braket",
@@ -33,7 +33,7 @@ def run_braket_circuit_depth_experiment(
     Args:
         matrix_sizes: List of matrix dimensions to test
         num_trials: Number of trials per matrix size
-        k_qubits: Number of clock qubits for QPE
+        k_qubits: List of clock qubit values for QPE to test
         shots: Number of shots per projection measurement
         preprocessing_mode: "ideal", "lee", "yalovetzky", or "iterative"
         output_dir: Directory to save results
@@ -49,90 +49,93 @@ def run_braket_circuit_depth_experiment(
     print("="*70)
     print(f"Matrix sizes: {matrix_sizes}")
     print(f"Trials per size: {num_trials}")
-    print(f"Total runs: {len(matrix_sizes) * num_trials}")
-    print(f"Clock qubits: {k_qubits}")
+    print(f"Clock qubits (k): {k_qubits}")
+    print(f"Total runs: {len(matrix_sizes) * len(k_qubits) * num_trials}")
     print(f"Shots per projection: {shots}")
     print(f"Preprocessing: {preprocessing_mode}")
     print(f"AWS Region: {aws_region}")
     print(f"Device: {device_arn}")
     print("="*70)
-    print(f"{'N':<5} {'Trial':<7} {'Depth':<10} {'Projections':<12} {'Status'}")
+    print(f"{'N':<5} {'k':<4} {'Trial':<7} {'Depth':<10} {'Projections':<12} {'Status'}")
     print("-"*70)
     
     # Storage for all results
     all_results = []
     submission_files = []
     
-    for N in matrix_sizes:
-        for trial in range(num_trials):
-            try:
-                # Generate random Hermitian matrix
-                A_matrix = np.random.rand(N, N)
-                A_matrix = A_matrix + A_matrix.T  # Make symmetric/Hermitian
-                b_vector = np.random.rand(N)
-                
-                # Normalize b_vector
-                b_vector = b_vector / np.linalg.norm(b_vector)
-                
-                # Calculate max eigenvalue for scaling
-                eigenvalues = np.linalg.eigvalsh(A_matrix)
-                max_eigenvalue = np.max(np.abs(eigenvalues))
-                
-                # Create problem
-                problem = QuantumLinearSystemProblem(A_matrix, b_vector)
-                
-                # Submit to Braket
-                submission_start = time.time()
-                # Ensure output_dir exists before calling submission
-                os.makedirs(output_dir, exist_ok=True)
+    for k in k_qubits:
+        for N in matrix_sizes:
+            for trial in range(num_trials):
+                try:
+                    # Generate random Hermitian matrix
+                    A_matrix = np.random.rand(N, N)
+                    A_matrix = A_matrix + A_matrix.T  # Make symmetric/Hermitian
+                    b_vector = np.random.rand(N)
+                    
+                    # Normalize b_vector
+                    b_vector = b_vector / np.linalg.norm(b_vector)
+                    
+                    # Calculate max eigenvalue for scaling
+                    eigenvalues = np.linalg.eigvalsh(A_matrix)
+                    max_eigenvalue = np.max(np.abs(eigenvalues))
+                    
+                    # Create problem
+                    problem = QuantumLinearSystemProblem(A_matrix, b_vector)
+                    
+                    # Submit to Braket
+                    submission_start = time.time()
+                    # Ensure output_dir exists before calling submission
+                    os.makedirs(output_dir, exist_ok=True)
 
-                result_path = run_braket_projection_submission(
-                    problem_list=[problem],
-                    output_dir=output_dir,
-                    k_qubits=k_qubits,
-                    shots=shots,
-                    preprocessing_mode=preprocessing_mode,
-                    aws_region=aws_region,
-                    device_arn=device_arn,
+                    result_path = run_braket_projection_submission(
+                        problem_list=[problem],
+                        output_dir=output_dir,
+                        k_qubits=k,
+                        shots=shots,
+                        preprocessing_mode=preprocessing_mode,
+                        aws_region=aws_region,
+                        device_arn=device_arn,
 
-                )
-                submission_end = time.time()
+                    )
+                    submission_end = time.time()
+                    
+                    # Load submission results to get circuit depth
+                    with open(result_path, 'r') as f:
+                        submission_data = json.load(f)
+                    
+                    circuit_depth = submission_data['enhanced_projection_results'][0]['depth']
+                    num_projections = submission_data['num_projections']
+                    
+                    # Store metadata
+                    trial_result = {
+                        'matrix_size': N,
+                        'k_qubits': k,
+                        'trial': trial,
+                        'circuit_depth': circuit_depth,
+                        'num_projections': num_projections,
+                        'submission_file': result_path,
+                        'submission_time': submission_end - submission_start,
+                        'max_eigenvalue': float(max_eigenvalue),
+                        'timestamp': datetime.now().isoformat()
+                    }
+                    
+                    all_results.append(trial_result)
+                    submission_files.append(result_path)
+                    
+                    print(f"{N:<5} {k:<4} {trial+1:<7} {circuit_depth:<10} {num_projections:<12} {'✓'}")
                 
-                # Load submission results to get circuit depth
-                with open(result_path, 'r') as f:
-                    submission_data = json.load(f)
-                
-                circuit_depth = submission_data['enhanced_projection_results'][0]['depth']
-                num_projections = submission_data['num_projections']
-                
-                # Store metadata
-                trial_result = {
-                    'matrix_size': N,
-                    'trial': trial,
-                    'circuit_depth': circuit_depth,
-                    'num_projections': num_projections,
-                    'submission_file': result_path,
-                    'submission_time': submission_end - submission_start,
-                    'max_eigenvalue': float(max_eigenvalue),
-                    'timestamp': datetime.now().isoformat()
-                }
-                
-                all_results.append(trial_result)
-                submission_files.append(result_path)
-                
-                print(f"{N:<5} {trial+1:<7} {circuit_depth:<10} {num_projections:<12} {'✓'}")
-                
-            except Exception as e:
-                print(f"{N:<5} {trial+1:<7} {'ERROR':<10} {'-':<12} {'✗'}")
-                print(f"  Error: {str(e)[:60]}")
-                
-                trial_result = {
-                    'matrix_size': N,
-                    'trial': trial,
-                    'error': str(e),
-                    'timestamp': datetime.now().isoformat()
-                }
-                all_results.append(trial_result)
+                except Exception as e:
+                    print(f"{N:<5} {k:<4} {trial+1:<7} {'ERROR':<10} {'-':<12} {'✗'}")
+                    print(f"  Error: {str(e)[:60]}")
+                    
+                    trial_result = {
+                        'matrix_size': N,
+                        'k_qubits': k,
+                        'trial': trial,
+                        'error': str(e),
+                        'timestamp': datetime.now().isoformat()
+                    }
+                    all_results.append(trial_result)
     
     print("="*70)
     print("Submission phase complete!")
@@ -338,15 +341,15 @@ if __name__ == "__main__":
         
         metadata = run_braket_circuit_depth_experiment(
             matrix_sizes=[2, 4, 8, 16],
-            num_trials=20,
-            k_qubits=7,
-            shots=3000,
+            num_trials=5,
+            k_qubits=[3,4,5,6,7],
+            shots=2000,
             preprocessing_mode="ideal",
-            output_dir="./experiments/aws_braket"
+            output_dir="./experiments/aws_braket_clock_qubits"
         )
         
         print("\n✓ Experiment submission complete!")
-        metadata_file = os.path.join("./experiments/aws_braket", 
+        metadata_file = os.path.join("./experiments/aws_braket_clock_qubits", 
                                      f"braket_experiment_metadata_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json")
         print(f"\nTo retrieve results after tasks complete, run:")
         print(f"  python braket_circuit_depth_experiment.py --retrieve {metadata_file}")

@@ -1,0 +1,78 @@
+{
+  "problem_list": [
+    {
+      "A_matrix": [
+        [
+          1.9150115533695118,
+          1.5843171342386912
+        ],
+        [
+          1.5843171342386912,
+          1.3939094945797998
+        ]
+      ],
+      "b_vector": [
+        0.7716687768673268,
+        0.6360246055052303
+      ]
+    }
+  ],
+  "shots": 2000,
+  "backend": "sv1",
+  "device_arn": "SV1",
+  "aws_region": "eu-west-2",
+  "ideal_preprocessing_list": [
+    [
+      [
+        0.048861688411731524,
+        3.26005935953758
+      ],
+      [
+        0.014563404379377753,
+        0.9998939480029284
+      ]
+    ]
+  ],
+  "probability_threshold": 0,
+  "k_qubits": 4,
+  "preprocessing_mode": "ideal",
+  "projection_mode": "all_components",
+  "projection_subset": null,
+  "num_solution_qubits": 1,
+  "num_projections": 2,
+  "projector_basis_states": [
+    0,
+    1
+  ],
+  "enhanced_projection_results": [
+    {
+      "problem_index": 0,
+      "projection_tasks": [
+        {
+          "basis_state": 0,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/fe21daa4-85ad-4ffc-956b-23746795be06",
+          "shots": 2000,
+          "projector_index": 0
+        },
+        {
+          "basis_state": 1,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/b7538e46-e16d-44b2-92ea-59b8287dc1d7",
+          "shots": 2000,
+          "projector_index": 1
+        }
+      ],
+      "depth": 224,
+      "num_projections": 2,
+      "ideal_solution": [
+        {
+          "real": 0.9977439056710814,
+          "imag": 0.0
+        },
+        {
+          "real": -0.06713492903262924,
+          "imag": 0.0
+        }
+      ]
+    }
+  ]
+}

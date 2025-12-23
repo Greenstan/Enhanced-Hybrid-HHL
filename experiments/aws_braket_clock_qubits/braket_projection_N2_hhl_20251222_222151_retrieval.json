@@ -1,0 +1,134 @@
+{
+  "problem_list": [
+    {
+      "A_matrix": [
+        [
+          0.384420783431783,
+          0.9844140625188746
+        ],
+        [
+          0.9844140625188746,
+          0.19692242212690925
+        ]
+      ],
+      "b_vector": [
+        0.7475710604459138,
+        0.6641818347288428
+      ]
+    }
+  ],
+  "shots": 2000,
+  "backend": "sv1",
+  "device_arn": "SV1",
+  "aws_region": "eu-west-2",
+  "ideal_preprocessing_list": [
+    [
+      [
+        -0.6981964143786151,
+        1.2795396199373075
+      ],
+      [
+        0.01152548630859107,
+        0.9999335793768256
+      ]
+    ]
+  ],
+  "probability_threshold": 0,
+  "k_qubits": 7,
+  "preprocessing_mode": "ideal",
+  "projection_mode": "all_components",
+  "projection_subset": null,
+  "num_solution_qubits": 1,
+  "num_projections": 2,
+  "projector_basis_states": [
+    0,
+    1
+  ],
+  "enhanced_projection_results": [
+    {
+      "problem_index": 0,
+      "projection_tasks": [
+        {
+          "basis_state": 0,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/865ebeb0-2f77-4431-8040-ed2d88376aea",
+          "status": "DONE",
+          "shots": 2000,
+          "created_at": "2025-12-22 19:21:50.484000+00:00",
+          "ended_at": "2025-12-22 19:21:52.243000+00:00",
+          "execution_time_seconds": 1.759,
+          "counts": {
+            "100000000": 603,
+            "100000001": 294,
+            "000000000": 774,
+            "000000001": 322,
+            "000100001": 1,
+            "110000001": 1,
+            "101000001": 1,
+            "111000001": 1,
+            "111100001": 1,
+            "110100001": 1,
+            "010000001": 1
+          },
+          "component_probability": 0.5200642054574639,
+          "success_rate": 0.3115
+        },
+        {
+          "basis_state": 1,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/ed8abf2c-4ea0-4588-adbe-729098c2cc17",
+          "status": "DONE",
+          "shots": 2000,
+          "created_at": "2025-12-22 19:21:51.521000+00:00",
+          "ended_at": "2025-12-22 19:21:53.140000+00:00",
+          "execution_time_seconds": 1.619,
+          "counts": {
+            "100000000": 625,
+            "000000000": 779,
+            "100000001": 278,
+            "000000001": 315,
+            "101000001": 1,
+            "000100001": 1,
+            "110001000": 1
+          },
+          "component_probability": 0.4689075630252101,
+          "success_rate": 0.2975
+        }
+      ],
+      "depth": 817,
+      "num_projections": 2,
+      "ideal_solution": [
+        {
+          "real": 0.725493686719866,
+          "imag": 0.0
+        },
+        {
+          "real": 0.6882288213447739,
+          "imag": 0.0
+        }
+      ],
+      "reconstructed_solution_probabilities": [
+        0.5258635504382196,
+        0.47413644956178036
+      ],
+      "fidelity": 0.9999997713332818,
+      "metadata": {
+        "measured_components": [
+          0,
+          1
+        ],
+        "success_rates": [
+          0.3115,
+          0.2975
+        ],
+        "raw_probabilities": [
+          0.5200642054574639,
+          0.4689075630252101
+        ],
+        "average_success_rate": 0.3045,
+        "total_probability": 0.988971768482674
+      },
+      "total_problem_time_seconds": 2.656,
+      "first_created_at": "2025-12-22 19:21:50.484000+00:00",
+      "last_ended_at": "2025-12-22 19:21:53.140000+00:00"
+    }
+  ]
+}

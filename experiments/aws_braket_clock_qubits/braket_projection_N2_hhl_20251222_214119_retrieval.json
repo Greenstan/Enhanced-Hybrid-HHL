@@ -1,0 +1,169 @@
+{
+  "problem_list": [
+    {
+      "A_matrix": [
+        [
+          1.78374428531335,
+          0.7095078695368219
+        ],
+        [
+          0.7095078695368219,
+          1.4153706387448537
+        ]
+      ],
+      "b_vector": [
+        0.29131646031809466,
+        0.9566267401383552
+      ]
+    }
+  ],
+  "shots": 2000,
+  "backend": "sv1",
+  "device_arn": "SV1",
+  "aws_region": "eu-west-2",
+  "ideal_preprocessing_list": [
+    [
+      [
+        0.8665320853836389,
+        2.332582838674565
+      ],
+      [
+        0.5784206027970296,
+        0.8157386874851046
+      ]
+    ]
+  ],
+  "probability_threshold": 0,
+  "k_qubits": 3,
+  "preprocessing_mode": "ideal",
+  "projection_mode": "all_components",
+  "projection_subset": null,
+  "num_solution_qubits": 1,
+  "num_projections": 2,
+  "projector_basis_states": [
+    0,
+    1
+  ],
+  "enhanced_projection_results": [
+    {
+      "problem_index": 0,
+      "projection_tasks": [
+        {
+          "basis_state": 0,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/04e3de87-e23b-4d70-851d-faa7207879dd",
+          "status": "DONE",
+          "shots": 2000,
+          "created_at": "2025-12-22 18:41:18.738000+00:00",
+          "ended_at": "2025-12-22 18:41:20.343000+00:00",
+          "execution_time_seconds": 1.605,
+          "counts": {
+            "10001": 1032,
+            "10000": 337,
+            "00101": 10,
+            "11100": 47,
+            "11000": 100,
+            "11101": 84,
+            "00000": 254,
+            "01100": 16,
+            "01101": 14,
+            "10100": 18,
+            "11001": 19,
+            "00001": 20,
+            "01110": 4,
+            "11011": 19,
+            "10010": 5,
+            "11010": 7,
+            "00111": 2,
+            "01111": 1,
+            "01011": 2,
+            "00010": 1,
+            "10111": 1,
+            "01001": 4,
+            "00100": 1,
+            "10101": 2
+          },
+          "component_probability": 0.043801652892561986,
+          "success_rate": 0.605
+        },
+        {
+          "basis_state": 1,
+          "task_id": "arn:aws:braket:eu-west-2:380012739362:quantum-task/3a649048-5ef3-45ea-88af-13118881d51f",
+          "status": "DONE",
+          "shots": 2000,
+          "created_at": "2025-12-22 18:41:19.746000+00:00",
+          "ended_at": "2025-12-22 18:41:21.155000+00:00",
+          "execution_time_seconds": 1.409,
+          "counts": {
+            "00000": 260,
+            "10001": 1042,
+            "10000": 347,
+            "11100": 35,
+            "01100": 22,
+            "11110": 1,
+            "01001": 4,
+            "01110": 3,
+            "11000": 103,
+            "10010": 6,
+            "11001": 21,
+            "00101": 12,
+            "11010": 7,
+            "11101": 62,
+            "11011": 13,
+            "00001": 18,
+            "01101": 9,
+            "01111": 5,
+            "10111": 3,
+            "00011": 2,
+            "01010": 3,
+            "10100": 11,
+            "10011": 2,
+            "10101": 1,
+            "00100": 1,
+            "01011": 2,
+            "00110": 2,
+            "00111": 2,
+            "01000": 1
+          },
+          "component_probability": 0.9549248747913188,
+          "success_rate": 0.599
+        }
+      ],
+      "depth": 113,
+      "num_projections": 2,
+      "ideal_solution": [
+        {
+          "real": -0.1749076817116529,
+          "imag": 0.0
+        },
+        {
+          "real": 0.9845848378267131,
+          "imag": 0.0
+        }
+      ],
+      "reconstructed_solution_probabilities": [
+        0.043857504210027536,
+        0.9561424957899725
+      ],
+      "fidelity": 0.9987634657216885,
+      "metadata": {
+        "measured_components": [
+          0,
+          1
+        ],
+        "success_rates": [
+          0.605,
+          0.599
+        ],
+        "raw_probabilities": [
+          0.043801652892561986,
+          0.9549248747913188
+        ],
+        "average_success_rate": 0.602,
+        "total_probability": 0.9987265276838808
+      },
+      "total_problem_time_seconds": 2.417,
+      "first_created_at": "2025-12-22 18:41:18.738000+00:00",
+      "last_ended_at": "2025-12-22 18:41:21.155000+00:00"
+    }
+  ]
+}
